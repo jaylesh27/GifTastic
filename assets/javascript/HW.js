@@ -10,7 +10,7 @@ var tvShows = ["game of thrones",
 				"parks and recreation",
 				"the office",
 				"the west wing",
-				"anthony bourdain parts unknown",
+				"breaking bad",
 				"the walking dead",
 				"family guy",
 				"mad men"
@@ -26,9 +26,9 @@ $(document).ready(function() {
 		$("#tvShowButtons").empty();
 		//create a for loop to go through the tvShows array and add a button for each item in array to the webpage
 		for (var i = 0; i < tvShows.length; i++) {
-			console.log(tvShows[i]);
+			//console.log(tvShows[i]);
 			//create a var to store a new button HTML element
-			var addButton = $("<button>");
+			var addButton = $("<button></button>");
 			//add a class of "tv-show" to each button
 			addButton.addClass("tv-show");
 			//add an attribute of data-name for each item in tvShow array
@@ -57,8 +57,9 @@ $(document).ready(function() {
 
 
 //when user clicks on a button, display 10 static gifs on the page
-	$("button").on("click", function() {
-		$("gifsnotjifs").empty();
+	$("#tvShowButtons").on("click", ".tv-show", function() {
+		//clear out gifsnotjifs div each time a button is pressed
+		$("#gifsnotjifs").empty();
 		var tvShow = $(this).attr("data-name");
 		console.log(tvShow);
 		//create a var to store the URL for the giphy API
@@ -73,10 +74,10 @@ $(document).ready(function() {
 			//declare "results" variable to store the data from the API call made to giphy
 			var results = response.data;
 			//console.log(results);
-			//create a for loop to run through each of the gifs that were pulled with the giphy API and add a div, rating, and img for each to the web page
+			//create a for loop to run through each of the gifs that were pulled with the giphy API and add a div, rating, and img for each to the HTML page
 			for (var i = 0; i < results.length; i++) {
 				//create a var for a div to store gif and rating
-				var gifDiv = $("<div class='item'></div>");
+				var gifDiv = $("<div class='gif-item'></div>");
 				//create a var to store the rating of each gif
 				var rating = results[i].rating;
 				//create a p element to display gif rating
@@ -98,10 +99,11 @@ $(document).ready(function() {
 	});
 
 //when user clicks on a gif, it should animate
+	$(".gif-item").on("click", function() {
 
-//under every gif, display its rating (G, PG, etc)
+	});
 
-//have the new button have the same functionality as the default buttons that were already on the page
+
 
 
 
