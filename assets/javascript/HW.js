@@ -86,6 +86,10 @@ $(document).ready(function() {
 		        var tvShowGif = $("<img>");
 		        //add a src attr to the gif with a link to the static version of the gif
 		        tvShowGif.attr("src", results[i].images.original_still.url);
+		        //add data-still, data-animate and data-state attributes to tvShowGif
+		        tvShowGif.attr("data-still", results[i].images.original_still.url);
+		        tvShowGif.attr("data-animate", results[i].images.fixed_height.url);
+		        tvShowGif.attr("data-state", "still");
 		        //add rating to the gifDiv
 		        gifDiv.append(gifRating);
 		        //add img to the givDiv
@@ -98,9 +102,16 @@ $(document).ready(function() {
 		});
 	});
 
-//when user clicks on a gif, it should animate
-	$(".gif-item").on("click", function() {
-
+//when user clicks on a gif, it should animate and if user clicks again it should pause
+	$("#gifsnotjifs").on("click", ".gif-item", function() {
+		var state = $(this).attr("data-state");
+			if (state === "still") {
+		        $(this).attr("src", $(this).attr("data-animate"));
+		        $(this).attr("data-state", "animate");
+		      }else if (state === "animate") {
+		        $(this).attr("src", $(this).attr("data-still"));
+		        $(this).attr("data-state", "still");
+      		}
 	});
 
 
