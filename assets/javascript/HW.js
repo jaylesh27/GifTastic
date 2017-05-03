@@ -49,6 +49,8 @@ $(document).ready(function() {
     	event.preventDefault();
     	//create a var to store the user input into the text box
     	var newTvShow = $("#tv-show-input").val().trim();
+    	//remove text from input box after user submits it
+    	$("#tv-show-input").val("");
     	//add the user input into the tvShows array
     	tvShows.push(newTvShow);
  		//run the displayButtons function to add the user input to the web page
@@ -90,6 +92,7 @@ $(document).ready(function() {
 		        tvShowGif.attr("data-still", results[i].images.original_still.url);
 		        tvShowGif.attr("data-animate", results[i].images.fixed_height.url);
 		        tvShowGif.attr("data-state", "still");
+		        console.log(tvShowGif.attr("data-state"));
 		        //add rating to the gifDiv
 		        gifDiv.append(gifRating);
 		        //add img to the givDiv
@@ -100,10 +103,11 @@ $(document).ready(function() {
 			}
 
 		});
+
 	});
 
 //when user clicks on a gif, it should animate and if user clicks again it should pause
-	$("#gifsnotjifs").on("click", ".gif-item", function() {
+	$("#gifsnotjifs").on("click", "img", function() {
 		var state = $(this).attr("data-state");
 			if (state === "still") {
 		        $(this).attr("src", $(this).attr("data-animate"));
@@ -113,9 +117,6 @@ $(document).ready(function() {
 		        $(this).attr("data-state", "still");
       		}
 	});
-
-
-
 
 
 	displayButtons();
