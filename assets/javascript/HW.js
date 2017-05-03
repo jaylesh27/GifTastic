@@ -94,11 +94,11 @@ $(document).ready(function() {
 		        tvShowGif.attr("data-state", "still");
 		        console.log(tvShowGif.attr("data-state"));
 		        //add rating to the gifDiv
-		        gifDiv.append(gifRating);
+		        gifDiv.prepend(gifRating);
 		        //add img to the givDiv
-		        gifDiv.append(tvShowGif);
+		        gifDiv.prepend(tvShowGif);
 		        //add the gifDiv to the HTML div that will display the gifs
-		        $("#gifsnotjifs").append(gifDiv);
+		        $("#gifsnotjifs").prepend(gifDiv);
 
 			}
 
